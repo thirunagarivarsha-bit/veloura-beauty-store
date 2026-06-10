@@ -1,37 +1,43 @@
-function Navbar({setActivePage}){
+import { Link } from "react-router-dom"
+
+function Navbar(){
 
     return(
 
         <nav className="navbar">
 
             <h2>
-                Veloura💄
+                Veloura 💄
             </h2>
 
             <ul className="nav-links">
 
-                <li onClick={()=>setActivePage("home")}>
-                    Home
+                <li>
+                    <Link to="/">Home</Link>
                 </li>
 
-                <li onClick={()=>setActivePage("products")}>
-                    Products
+                <li>
+                    <Link to="/products">Products</Link>
                 </li>
 
-                <li onClick={()=>setActivePage("reviews")}>
-                    Reviews
+                <li>
+                    <Link to="/reviews">Reviews</Link>
                 </li>
 
-                <li onClick={()=>setActivePage("contact")}>
-                    Contact
+                <li>
+                    <Link to="/contact">Contact</Link>
                 </li>
 
-                <li onClick={()=>setActivePage("wishlist")}>
-                    ❤️ Wishlist
+                <li>
+                    <Link to="/wishlist">
+                        ❤️ Wishlist
+                    </Link>
                 </li>
 
-                <li onClick={()=>setActivePage("cart")}>
-                    🛒 Cart
+                <li>
+                    <Link to="/cart">
+                        🛒 Cart
+                    </Link>
                 </li>
 
             </ul>

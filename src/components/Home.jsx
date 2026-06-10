@@ -1,4 +1,8 @@
-function Home({setActivePage}){
+import { useNavigate } from "react-router-dom"
+
+function Home(){
+
+    const navigate = useNavigate()
 
     return(
 
@@ -19,7 +23,7 @@ function Home({setActivePage}){
                     </p>
 
                     <button
-                        onClick={()=>setActivePage("products")}
+                        onClick={()=>navigate("/products")}
                     >
                         Shop Collection
                     </button>

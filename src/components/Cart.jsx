@@ -1,10 +1,15 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
-function Cart({setActivePage}){
+function Cart(){
 
 const [coupon,setCoupon] = useState("")
 const [delivery,setDelivery] = useState("Normal Delivery")
 const [giftWrap,setGiftWrap] = useState(false)
+
+const couponRef = useRef()
+
+const navigate = useNavigate()
 
 const products = [
 
@@ -46,6 +51,14 @@ if(giftWrap){
 
 }
 
+const applyCoupon = ()=>{
+
+    setCoupon(
+        couponRef.current.value
+    )
+
+}
+
 return(
 
 <div className="cart-page">
@@ -60,7 +73,10 @@ return(
 
             products.map((item,index)=>(
 
-                <div className="cart-card" key={index}>
+                <div
+                    className="cart-card"
+                    key={index}
+                >
 
                     <h2>
                         {item.name}
@@ -85,11 +101,18 @@ return(
         </h2>
 
         <input
+            ref={couponRef}
             type="text"
-            placeholder="Enter Coupon"
-            value={coupon}
-            onChange={(e)=>setCoupon(e.target.value)}
+            placeholder="Enter Coupon Code"
         />
+
+        <br /><br />
+
+        <button
+            onClick={applyCoupon}
+        >
+            Apply Coupon
+        </button>
 
         <p>
             Available Coupon : GLOW20
@@ -105,7 +128,11 @@ return(
 
         <select
             value={delivery}
-            onChange={(e)=>setDelivery(e.target.value)}
+            onChange={(e)=>
+                setDelivery(
+                    e.target.value
+                )
+            }
         >
 
             <option>
@@ -127,7 +154,11 @@ return(
             <input
                 type="checkbox"
                 checked={giftWrap}
-                onChange={()=>setGiftWrap(!giftWrap)}
+                onChange={()=>
+                    setGiftWrap(
+                        !giftWrap
+                    )
+                }
             />
 
             Gift Wrap 🎁 (+₹100)
@@ -147,7 +178,9 @@ return(
         </h2>
 
         <button
-            onClick={()=>setActivePage("checkout")}
+            onClick={()=>
+                navigate("/checkout")
+            }
         >
             Proceed To Checkout
         </button>

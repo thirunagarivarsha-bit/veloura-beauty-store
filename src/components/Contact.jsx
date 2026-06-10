@@ -1,11 +1,15 @@
-function Contact({setActivePage}){
+import { useNavigate } from "react-router-dom"
+
+function Contact(){
+
+const navigate = useNavigate()
 
 return(
 
 <div className="contact-page">
 
 <h1>
-Contact GlowCart
+Contact Veloura
 </h1>
 
 <div className="contact-container">
@@ -17,7 +21,7 @@ Store Details
 </h2>
 
 <p>
-GlowCart Luxury Beauty
+Veloura Luxury Beauty
 </p>
 
 <p>
@@ -29,7 +33,7 @@ Hyderabad, Telangana
 </p>
 
 <p>
-glowcartbeauty@gmail.com
+support@veloura.com
 </p>
 
 </div>
@@ -45,9 +49,9 @@ Customer Support
 <p>Beauty Consultation</p>
 
 <button
-onClick={()=>setActivePage("chat")}
+onClick={()=>navigate("/chat")}
 >
-    Chat With Us
+Chat With Us
 </button>
 
 </div>

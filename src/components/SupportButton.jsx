@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-function SupportButton({setActivePage}){
+function SupportButton(){
 
 const [openChat,setOpenChat] = useState(false)
+
+const navigate = useNavigate()
 
 return(
 
@@ -24,7 +27,7 @@ openChat && (
 <div className="chatbox">
 
 <h3>
-GlowCart Support
+Veloura Support
 </h3>
 
 <p>
@@ -36,25 +39,25 @@ How can we help today?
 </p>
 
 <button
-onClick={()=>setActivePage("chat")}
+onClick={()=>navigate("/chat")}
 >
 Track Order
 </button>
 
 <button
-onClick={()=>setActivePage("chat")}
+onClick={()=>navigate("/chat")}
 >
 Refund Support
 </button>
 
 <button
-onClick={()=>setActivePage("chat")}
+onClick={()=>navigate("/chat")}
 >
 Beauty Consultation
 </button>
 
 <button
-onClick={()=>setActivePage("chat")}
+onClick={()=>navigate("/chat")}
 >
 Skin Care Help
 </button>

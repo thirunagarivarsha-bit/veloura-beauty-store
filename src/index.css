@@ -716,3 +716,102 @@ margin-top:20px;
 width:500px;
 
 }
+/* React Router Links */
+
+.nav-links a{
+
+color:white;
+
+text-decoration:none;
+
+font-weight:500;
+
+transition:0.3s;
+
+}
+
+.nav-links a:hover{
+
+color:#ec4899;
+
+}
+
+/* Active Navigation Feel */
+
+.nav-links li{
+
+list-style:none;
+
+cursor:pointer;
+
+}
+
+/* Home Hero Button */
+
+.overlay button{
+
+margin-top:20px;
+
+}
+
+/* Cart Input */
+
+.coupon-section input{
+
+width:300px;
+
+max-width:90%;
+
+}
+
+/* Checkout Button */
+
+.summary-section button{
+
+margin-top:20px;
+
+}
+
+/* Chat Buttons */
+
+.chatbox button{
+
+width:100%;
+
+margin-top:10px;
+
+}
+
+/* Contact Button */
+
+.contact-card button{
+
+margin-top:20px;
+
+}
+
+/* Smooth Hover */
+
+.product-card,
+.offer-card,
+.tip-card,
+.review-box,
+.wishlist-card,
+.contact-card,
+.cart-card{
+
+transition:0.3s ease;
+
+}
+
+.product-card:hover,
+.offer-card:hover,
+.tip-card:hover,
+.review-box:hover,
+.wishlist-card:hover,
+.contact-card:hover,
+.cart-card:hover{
+
+transform:translateY(-8px);
+
+}

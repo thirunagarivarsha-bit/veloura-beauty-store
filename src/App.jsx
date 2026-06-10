@@ -1,4 +1,5 @@
-import { useState } from "react"
+import React from "react"
+import { Routes, Route } from "react-router-dom"
 
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
@@ -13,58 +14,68 @@ import Checkout from "./components/Checkout"
 import ChatPage from "./components/ChatPage"
 import SupportButton from "./components/SupportButton"
 
-function App(){
+class ErrorBoundary extends React.Component{
 
-  const [activePage,setActivePage] = useState("home")
+  constructor(props){
+    super(props)
+    this.state = { hasError:false }
+  }
+
+  static getDerivedStateFromError(){
+    return { hasError:true }
+  }
+
+  render(){
+
+    if(this.state.hasError){
+      return(
+        <h1 style={{textAlign:"center"}}>
+          Something Went Wrong
+        </h1>
+      )
+    }
+
+    return this.props.children
+  }
+}
+
+function App(){
 
   return(
 
-    <>
+    <ErrorBoundary>
 
       <div className="offer-banner">
         ✨ Summer Luxury Sale • Up To 50% OFF • Free Delivery Above ₹999 ✨
       </div>
 
-      <Navbar setActivePage={setActivePage} />
+      <Navbar />
 
-      {activePage === "home" && (
-        <Home setActivePage={setActivePage}/>
-      )}
+      <Routes>
 
-      {activePage === "products" && (
-        <Products />
-      )}
+        <Route path="/" element={<Home />} />
 
-      {activePage === "reviews" && (
-        <Reviews />
-      )}
+        <Route path="/products" element={<Products />} />
 
-      {activePage === "contact" && (
-        <Contact setActivePage={setActivePage}/>
-      )}
+        <Route path="/reviews" element={<Reviews />} />
 
-      {activePage === "wishlist" && (
-        <Wishlist />
-      )}
+        <Route path="/contact" element={<Contact />} />
 
-      {activePage === "cart" && (
-        <Cart setActivePage={setActivePage}/>
-      )}
-      {activePage==="chat" && <ChatPage />
-     }
+        <Route path="/wishlist" element={<Wishlist />} />
 
-      {activePage === "checkout" && (
-        <Checkout />
-      )}
+        <Route path="/cart" element={<Cart />} />
 
-       <SupportButton
-setActivePage={setActivePage}
-/>
-      
+        <Route path="/checkout" element={<Checkout />} />
+
+        <Route path="/chat" element={<ChatPage />} />
+
+      </Routes>
+
+      <SupportButton />
 
       <Footer />
 
-    </>
+    </ErrorBoundary>
 
   )
 
