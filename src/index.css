@@ -815,3 +815,34 @@ transition:0.3s ease;
 transform:translateY(-8px);
 
 }
+.review-box{
+
+width:280px;
+
+background:#1e293b;
+
+padding:20px;
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+.review-box:hover{
+
+transform:translateY(-8px);
+
+}
+.tab-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:20px;
+}
+
+.tab-buttons a{
+color:#ec4899;
+text-decoration:none;
+font-weight:bold;
+}

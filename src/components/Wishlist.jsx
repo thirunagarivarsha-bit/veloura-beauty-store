@@ -1,66 +1,62 @@
-function Wishlist(){
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
 
-    const wishlistItems = [
+function Wishlist() {
 
-        {
-            name:"Glow Serum",
-            price:899,
-            image:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be"
-        },
+  const {
+    wishlistItems,
+    setWishlistItems,
+    addToCart
+  } = useContext(CartContext)
 
-        {
-            name:"Lip Gloss",
-            price:599,
-            image:"https://images.unsplash.com/photo-1586495777744-4413f21062fa"
-        }
+  const moveToCart = (item) => {
 
-    ]
+    addToCart(item)
 
-    return(
+    setWishlistItems(
+      wishlistItems.filter(
+        (wish) => wish.id !== item.id
+      )
+    )
 
-        <div className="wishlist-page">
+    alert(item.name + " moved to cart 🛒")
+  }
 
-            <h1>
-                My Wishlist ❤️
-            </h1>
+  return (
+    <div className="wishlist-page">
 
-            <div className="wishlist-container">
+      <h1>My Wishlist ❤️</h1>
 
-                {
+      <div className="wishlist-container">
 
-                    wishlistItems.map((item,index)=>(
+        {wishlistItems.length === 0 ? (
+          <h2>No Items In Wishlist</h2>
+        ) : (
+          wishlistItems.map((item) => (
 
-                        <div className="wishlist-card" key={index}>
+            <div className="wishlist-card" key={item.id}>
 
-                            <img
-                                src={item.image}
-                                alt="product"
-                            />
+              <img src={item.image} alt={item.name} />
 
-                            <h2>
-                                {item.name}
-                            </h2>
+              <h2>{item.name}</h2>
 
-                            <p>
-                                ₹{item.price}
-                            </p>
+              <p>₹{item.price}</p>
 
-                            <button>
-                                Move To Cart 🛒
-                            </button>
-
-                        </div>
-
-                    ))
-
-                }
+              <button
+                onClick={() => moveToCart(item)}
+              >
+                Move To Cart 🛒
+              </button>
 
             </div>
 
-        </div>
+          ))
+        )}
 
-    )
+      </div>
 
+    </div>
+  )
 }
 
 export default Wishlist

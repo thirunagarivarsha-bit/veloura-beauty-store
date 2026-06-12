@@ -1,84 +1,66 @@
-import React from "react"
+import React, { Suspense, lazy } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-
 import Home from "./components/Home"
-import Products from "./components/Products"
-import Reviews from "./components/Reviews"
 import Contact from "./components/Contact"
 import Wishlist from "./components/Wishlist"
 import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
 import ChatPage from "./components/ChatPage"
+import OrderSuccess from "./components/OrderSuccess"
+import ProtectedRoute from "./components/ProtectedRoute"
 import SupportButton from "./components/SupportButton"
 
-class ErrorBoundary extends React.Component{
+const Products = lazy(() => import("./components/Products"))
+const ProductDetails = lazy(() => import("./components/ProductDetails"))
 
-  constructor(props){
-    super(props)
-    this.state = { hasError:false }
-  }
-
-  static getDerivedStateFromError(){
-    return { hasError:true }
-  }
-
-  render(){
-
-    if(this.state.hasError){
-      return(
-        <h1 style={{textAlign:"center"}}>
-          Something Went Wrong
-        </h1>
-      )
-    }
-
-    return this.props.children
-  }
-}
-
-function App(){
-
-  return(
-
-    <ErrorBoundary>
-
+function App() {
+  return (
+    <>
       <div className="offer-banner">
-        ✨ Summer Luxury Sale • Up To 50% OFF • Free Delivery Above ₹999 ✨
+        ✨ Summer Luxury Sale • Up To 50% OFF ✨
       </div>
 
       <Navbar />
 
-      <Routes>
+      <Suspense fallback={<h2 style={{textAlign:"center"}}>Loading...</h2>}>
+        <Routes>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<Products />} />
 
-        <Route path="/reviews" element={<Reviews />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
 
-        <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
 
-        <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/wishlist" element={<Wishlist />} />
 
-        <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
 
-        <Route path="/checkout" element={<Checkout />} />
+          <Route path="/chat" element={<ChatPage />} />
 
-        <Route path="/chat" element={<ChatPage />} />
+          <Route path="/success" element={<OrderSuccess />} />
 
-      </Routes>
+          {/* FIXED: protected checkout */}
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+
+        </Routes>
+      </Suspense>
 
       <SupportButton />
-
       <Footer />
-
-    </ErrorBoundary>
-
+    </>
   )
-
 }
 
 export default App

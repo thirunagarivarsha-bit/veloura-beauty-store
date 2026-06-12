@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Checkout(){
+    const navigate=useNavigate()
 
 const [formData,setFormData] = useState({
 
@@ -56,10 +58,18 @@ const orderHandler = ()=>{
         "customerName",
         formData.name
     )
-
     setSuccess(
-        "✨ Order Placed Successfully"
-    )
+
+"✨ Order Placed Successfully"
+
+)
+
+setTimeout(()=>{
+
+navigate("/success")
+
+},1500)
+    
 
 }
 

@@ -1,51 +1,46 @@
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
 
-function Navbar(){
+function Navbar() {
 
-    return(
+  const { cartItems, wishlistItems } = useContext(CartContext)
 
-        <nav className="navbar">
+  return (
+    <nav className="navbar">
 
-            <h2>
-                Veloura 💄
-            </h2>
+      <h2>Veloura 💄</h2>
 
-            <ul className="nav-links">
+      <ul className="nav-links">
 
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
 
-                <li>
-                    <Link to="/products">Products</Link>
-                </li>
+        <li>
+          <Link to="/products">Products</Link>
+        </li>
 
-                <li>
-                    <Link to="/reviews">Reviews</Link>
-                </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
 
-                <li>
-                    <Link to="/contact">Contact</Link>
-                </li>
+        <li>
+          <Link to="/wishlist">
+            ❤️ Wishlist ({wishlistItems.length})
+          </Link>
+        </li>
 
-                <li>
-                    <Link to="/wishlist">
-                        ❤️ Wishlist
-                    </Link>
-                </li>
+        <li>
+          <Link to="/cart">
+            🛒 Cart ({cartItems.length})
+          </Link>
+        </li>
 
-                <li>
-                    <Link to="/cart">
-                        🛒 Cart
-                    </Link>
-                </li>
+      </ul>
 
-            </ul>
-
-        </nav>
-
-    )
-
+    </nav>
+  )
 }
 
 export default Navbar
