@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/veloura-beauty-store/'
+  plugins: [react()],
+  base: '/veloura-beauty-store/',
 })
